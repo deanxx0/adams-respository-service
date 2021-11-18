@@ -1,6 +1,7 @@
 ﻿using adams_repository_service.Data;
 using adams_repository_service.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using NAVIAIServices.RepositoryService;
 using NAVIAIServices.RepositoryService.Entities;
 using NAVIAIServices.SDK.Enums;
@@ -45,10 +46,8 @@ namespace adams_repository_service.Controllers
         }
 
         [HttpPost("projects")]
-        //public ActionResult CreateProject(string name, string description, NAVIAITypes type)
         public ActionResult CreateProject([FromBody]CreateProjectModel createProjectModel)
         {
-            //var entity = new Project(type, name, description);
             var entity = new Project(
                 createProjectModel.AIType, 
                 createProjectModel.Name, 

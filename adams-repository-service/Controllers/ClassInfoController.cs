@@ -48,5 +48,22 @@ namespace adams_repository_service.Controllers
             projectService.ClassInfos.Add(entity);
             return Ok(entity);
         }
+
+        [HttpDelete("projects/{projectId}/classinfos/{classinfoId}")]
+        public ActionResult DeleteClassInfo(string projectId, string classInfoId)
+        {
+            var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
+            var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
+
+            var classInfo = projectService.ClassInfos.Find(x => x.Id == classInfoId).FirstOrDefault();
+            if (classInfo == null)
+                throw new Exception();
+
+            classInfo.SetValue("isenabled", false);
+
+            projectService.ClassInfos.Update(classInfo);
+
+            return Ok(classInfo);
+        }
     }
 }

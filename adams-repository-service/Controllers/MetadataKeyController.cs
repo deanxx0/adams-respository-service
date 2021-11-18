@@ -58,6 +58,23 @@ namespace adams_repository_service.Controllers
             return Ok(entity);
         }
 
+        [HttpDelete("projects/{projectId}/metadatakeys/{metadatakeyId}")]
+        public ActionResult DeleteMetadataKey(string projectId, string metadatakeyId)
+        {
+            var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
+            var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
+
+            var metadatakey = projectService.MetadataKeys.Find(x => x.Id == metadatakeyId).FirstOrDefault();
+            if (metadatakey == null)
+                throw new Exception();
+
+            metadatakey.SetValue("isenabled", false);
+
+            projectService.MetadataKeys.Update(metadatakey);
+
+            return Ok(metadatakey);
+        }
+
         private MetadataTypes convert(string typeStr)
         {
             foreach(MetadataTypes type in Enum.GetValues(typeof(MetadataTypes)))
