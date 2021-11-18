@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
 {
-    [Route("channels")]
+    [Route("projects")]
     [ApiController]
     public class ChannelController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace adams_repository_service.Controllers
             _repositoryService = repositoryService;
         }
 
-        [HttpGet("{projectId}")]
+        [HttpGet("{projectId}/channels")]
         public ActionResult GetAllChannels(string projectId)
         {
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
@@ -33,8 +33,8 @@ namespace adams_repository_service.Controllers
             return Ok(channels);
         }
 
-        [HttpPost("{projectId}")]
-        public ActionResult CreateChannels(string projectId, [FromBody]CreateChannelModel createChannelModel)
+        [HttpPost("{projectId}/channels")]
+        public ActionResult CreateChannel(string projectId, [FromBody]CreateChannelModel createChannelModel)
         {
             var entity = new InputChannel(
                 createChannelModel.Name,
@@ -47,6 +47,23 @@ namespace adams_repository_service.Controllers
             var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
             projectService.InputChannels.Add(entity);
             return Ok(entity);
+        }
+
+        [HttpDelete("{projectId}/channels/{channelId}")]
+        public ActionResult DeleteChannel(string projectId, string channelId)
+        {
+            var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
+            var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
+
+            var channel = projectService.InputChannels.Find(x => x.Id == channelId).FirstOrDefault();
+            if (channel == null)
+                throw new Exception();
+
+            channel.SetValue("isenabled", false);
+
+            projectService.InputChannels.Update(channel);
+
+            return Ok(channel);
         }
     }
 }
