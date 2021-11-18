@@ -13,13 +13,12 @@ namespace adams_repository_service.Models
         public string NamingRegex { get; set; }
         public bool IsEnabled { get; set; }
 
-        public CreateChannelModel(string name, bool isColor, string description, string namingRegex, bool isEnabled = true)
+        public CreateChannelModel(string name, bool isColor, string description, string namingRegex)
         {
             this.Name = name;
             this.IsColor = isColor;
             this.Description = description;
             this.NamingRegex = namingRegex;
-            this.IsEnabled = isEnabled;
         }
         public CreateChannelModel()
         {

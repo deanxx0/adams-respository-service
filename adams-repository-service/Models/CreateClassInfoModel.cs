@@ -14,10 +14,9 @@ namespace adams_repository_service.Models
         public byte B { get; set; }
         public bool IsEnabled { get; set; }
 
-        public CreateClassInfoModel(string name, string Description, byte R, byte G, byte B, bool isEnabled = true)
+        public CreateClassInfoModel(string name, string Description, byte R, byte G, byte B)
         {
             this.Name = name;
-            this.IsEnabled = isEnabled;
             this.Description = Description;
             this.R = R;
             this.G = G;

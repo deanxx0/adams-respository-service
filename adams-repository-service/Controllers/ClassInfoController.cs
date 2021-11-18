@@ -41,7 +41,7 @@ namespace adams_repository_service.Controllers
                 createClassInfoModel.R,
                 createClassInfoModel.G,
                 createClassInfoModel.B,
-                createClassInfoModel.IsEnabled
+                true
                 );
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
             var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);

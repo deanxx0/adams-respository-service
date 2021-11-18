@@ -29,7 +29,7 @@ namespace adams_repository_service.Controllers
         {
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
             var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
-            var channels = projectService.InputChannels.FindAll().ToList();
+            var channels = projectService.InputChannels.Find(x=>x.IsEnabled == true).ToList();
             return Ok(channels);
         }
 
@@ -41,7 +41,7 @@ namespace adams_repository_service.Controllers
                 createChannelModel.IsColor,
                 createChannelModel.Description,
                 createChannelModel.NamingRegex,
-                createChannelModel.IsEnabled
+                true
                 );
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
             var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
