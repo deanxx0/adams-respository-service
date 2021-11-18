@@ -4,9 +4,7 @@ using Microsoft.Extensions.Configuration;
 using NAVIAIServices.RepositoryService;
 using NAVIAIServices.RepositoryService.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
 {
@@ -49,7 +47,7 @@ namespace adams_repository_service.Controllers
             return Ok(entity);
         }
 
-        [HttpDelete("projects/{projectId}/classinfos/{classinfoId}")]
+        [HttpDelete("projects/{projectId}/classinfos/{classInfoId}")]
         public ActionResult DeleteClassInfo(string projectId, string classInfoId)
         {
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");

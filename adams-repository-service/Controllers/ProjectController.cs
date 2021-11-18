@@ -4,11 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NAVIAIServices.RepositoryService;
 using NAVIAIServices.RepositoryService.Entities;
-using NAVIAIServices.SDK.Enums;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
 {
@@ -31,7 +27,7 @@ namespace adams_repository_service.Controllers
         public ActionResult GetAllProject()
         {
             var projectInfos = _appDbContext.ProjectInfos.AsQueryable().ToList();
-            var projects = projectInfos.Select(x => _repositoryService.GetProjectService(x.DbPath, DBType.LiteDB).Entity).ToList();
+            var projects = projectInfos.Select(x => _repositoryService.GetProjectService(x.DbPath, DBType.LiteDB).Entity).Where(x=>x != null).ToList();
             return Ok(projects);
         }
 

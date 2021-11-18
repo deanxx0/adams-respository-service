@@ -5,9 +5,7 @@ using Microsoft.Extensions.Configuration;
 using NAVIAIServices.RepositoryService;
 using NAVIAIServices.RepositoryService.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
 {
