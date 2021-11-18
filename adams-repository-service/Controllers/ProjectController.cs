@@ -58,6 +58,7 @@ namespace adams_repository_service.Controllers
             var dbpath = CreateNewDbPath(entity.Id);
             var projectInfo = new ProjectInfo(entity.Id, dbpath);
             _appDbContext.ProjectInfos.Add(projectInfo);
+            _appDbContext.SaveChanges();
 
             var project = _repositoryService.CreateProjectService(dbpath, DBType.LiteDB, entity);
             return Ok(project.Entity);
