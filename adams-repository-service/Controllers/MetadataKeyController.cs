@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
 {
-    [Route("projects")]
+    [Route("")]
     [ApiController]
     public class MetadataKeyController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace adams_repository_service.Controllers
             _repositoryService = repositoryService;
         }
 
-        [HttpGet("{projectId}/metadatakeys")]
+        [HttpGet("projects/{projectId}/metadatakeys")]
         public ActionResult GetAllMetadataKey(string projectId)
         {
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
@@ -33,7 +33,7 @@ namespace adams_repository_service.Controllers
             return Ok(metadataKeys);
         }
 
-        [HttpPost("{projectId}/metadatakeys")]
+        [HttpPost("projects/{projectId}/metadatakeys")]
         public ActionResult CreateMetadataKey(string projectId, [FromBody] CreateMetadataKeyModel createMetadataKeyModel)
         {
 

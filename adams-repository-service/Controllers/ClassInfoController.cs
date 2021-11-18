@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
 {
-    [Route("projects")]
+    [Route("")]
     [ApiController]
     public class ClassInfoController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace adams_repository_service.Controllers
             _repositoryService = repositoryService;
         }
 
-        [HttpGet("{projectId}/classinfos")]
+        [HttpGet("projects/{projectId}/classinfos")]
         public ActionResult GetAllClassInfo(string projectId)
         {
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
@@ -32,7 +32,7 @@ namespace adams_repository_service.Controllers
             return Ok(classInfo);
         }
 
-        [HttpPost("{projectId}/classinfos")]
+        [HttpPost("projects/{projectId}/classinfos")]
         public ActionResult CreateClassInfo(string projectId, [FromBody] CreateClassInfoModel createClassInfoModel)
         {
             var entity = new ClassInfo(

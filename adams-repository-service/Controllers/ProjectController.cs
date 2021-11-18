@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
 {
-    [Route("projects")]
+    [Route("")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace adams_repository_service.Controllers
             _repositoryService = repositoryService;
         }
 
-        [HttpGet("")]
+        [HttpGet("projects")]
         public ActionResult GetAllProject()
         {
             var projectInfos = _appDbContext.ProjectInfos.AsQueryable().ToList();
@@ -32,7 +32,7 @@ namespace adams_repository_service.Controllers
             return Ok(projects);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("projects/{id}")]
         public ActionResult<Project> GetProject(string id)
         {
             var dbpath = _appDbContext.ProjectInfos.Where(x => x.EntityId == id)
@@ -44,7 +44,7 @@ namespace adams_repository_service.Controllers
             return entity;
         }
 
-        [HttpPost("")]
+        [HttpPost("projects")]
         //public ActionResult CreateProject(string name, string description, NAVIAITypes type)
         public ActionResult CreateProject([FromBody]CreateProjectModel createProjectModel)
         {

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
 {
-    [Route("projects")]
+    [Route("")]
     [ApiController]
     public class ChannelController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace adams_repository_service.Controllers
             _repositoryService = repositoryService;
         }
 
-        [HttpGet("{projectId}/channels")]
+        [HttpGet("projects/{projectId}/channels")]
         public ActionResult GetAllChannels(string projectId)
         {
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
@@ -33,7 +33,7 @@ namespace adams_repository_service.Controllers
             return Ok(channels);
         }
 
-        [HttpPost("{projectId}/channels")]
+        [HttpPost("projects/{projectId}/channels")]
         public ActionResult CreateChannel(string projectId, [FromBody]CreateChannelModel createChannelModel)
         {
             var entity = new InputChannel(
@@ -49,7 +49,7 @@ namespace adams_repository_service.Controllers
             return Ok(entity);
         }
 
-        [HttpDelete("{projectId}/channels/{channelId}")]
+        [HttpDelete("projects/{projectId}/channels/{channelId}")]
         public ActionResult DeleteChannel(string projectId, string channelId)
         {
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
