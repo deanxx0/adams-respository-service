@@ -1,6 +1,7 @@
 ﻿using adams_repository_service.Data;
 using adams_repository_service.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using NAVIAIServices.RepositoryService;
 using NAVIAIServices.RepositoryService.Entities;
 using System;
@@ -15,19 +16,18 @@ namespace adams_repository_service.Controllers
     public class ChannelController : ControllerBase
     {
         IRepositoryService _repositoryService;
-        private readonly AppDbContext _appDbContext;
+        private string _DbRoot;
 
-        public ChannelController(AppDbContext appDbContext, IRepositoryService repositoryService)
+        public ChannelController(IRepositoryService repositoryService, IConfiguration configuration)
         {
-            _appDbContext = appDbContext;
+            _DbRoot = configuration.GetValue<string>("DbRoot");
             _repositoryService = repositoryService;
         }
 
         [HttpGet("{projectId}")]
         public ActionResult GetAllChannels(string projectId)
         {
-            var baseDIr = @"D:\AdamsDBRoot";
-            var dbPath = System.IO.Path.Combine(baseDIr, projectId + ".db");
+            var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
             var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
             var channels = projectService.InputChannels.FindAll().ToList();
             return Ok(channels);
@@ -43,8 +43,7 @@ namespace adams_repository_service.Controllers
                 createChannelModel.NamingRegex,
                 createChannelModel.IsEnabled
                 );
-            var baseDIr = @"D:\AdamsDBRoot";
-            var dbPath = System.IO.Path.Combine(baseDIr, projectId + ".db");
+            var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
             var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
             projectService.InputChannels.Add(entity);
             return Ok(entity);
