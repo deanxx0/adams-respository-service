@@ -18,9 +18,11 @@ namespace adams_repository_service.Controllers
     {
         IRepositoryService _repositoryService;
         private readonly AppDbContext _appDbContext;
+        private string _DbRoot;
 
-        public ProjectController(AppDbContext appDbContext, IRepositoryService repositoryService)
+        public ProjectController(AppDbContext appDbContext, IRepositoryService repositoryService, IConfiguration configuration)
         {
+            _DbRoot = configuration.GetValue<string>("DbRoot");
             _appDbContext = appDbContext;
             _repositoryService = repositoryService;
         }
@@ -54,19 +56,13 @@ namespace adams_repository_service.Controllers
                 createProjectModel.Description
                 );
 
-            var dbpath = CreateNewDbPath(entity.Id);
+            var dbpath = System.IO.Path.Combine(_DbRoot, entity.Id + ".db");
             var projectInfo = new ProjectInfo(entity.Id, dbpath);
             _appDbContext.ProjectInfos.Add(projectInfo);
             _appDbContext.SaveChanges();
 
             var project = _repositoryService.CreateProjectService(dbpath, DBType.LiteDB, entity);
             return Ok(project.Entity);
-        }
-
-        private string CreateNewDbPath(string id)
-        {
-            var baseDIr = @"D:\AdamsDBRoot";
-            return System.IO.Path.Combine(baseDIr, id + ".db");
         }
     }
 }
