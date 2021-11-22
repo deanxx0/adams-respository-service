@@ -1,4 +1,5 @@
-﻿using NAVIAIServices.SDK.Enums;
+﻿
+using NAVIAIServices.RepositoryService.Enums;
 
 namespace adams_repository_service.Models
 {
