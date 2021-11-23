@@ -29,7 +29,7 @@ namespace adams_repository_service.Controllers
         {
             var dbPath = System.IO.Path.Combine(_DbRoot, projectId + ".db");
             var projectService = _repositoryService.GetProjectService(dbPath, DBType.LiteDB);
-            var classInfo = projectService.ClassInfos.FindAll().ToList();
+            var classInfo = projectService.ClassInfos.Find(x => x.IsEnabled == true).ToList();
             return Ok(classInfo);
         }
 
