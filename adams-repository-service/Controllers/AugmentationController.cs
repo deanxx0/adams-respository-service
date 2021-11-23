@@ -48,6 +48,7 @@ namespace adams_repository_service.Controllers
                 createAugmentationModel.Shift,
                 createAugmentationModel.Tilt,
                 createAugmentationModel.Rotation,
+                createAugmentationModel.BorderMode,
                 createAugmentationModel.Contrast,
                 createAugmentationModel.Brightness,
                 createAugmentationModel.Shade,

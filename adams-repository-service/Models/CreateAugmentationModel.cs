@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAVIAIServices.RepositoryService.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace adams_repository_service.Models
         public double Shift { get; set; }
         public double Tilt { get; set; }
         public double Rotation { get; set; }
+        public BorderModes BorderMode { get; init; }
         public double Contrast { get; set; }
         public double Brightness { get; set; }
         public double Shade { get; set; }
