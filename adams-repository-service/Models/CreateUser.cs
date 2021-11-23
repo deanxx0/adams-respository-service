@@ -9,9 +9,14 @@ namespace adams_repository_service.Models
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public UserClaims UserClaim { get; set; }
+        public string UserClaim { get; set; }
 
-        public CreateUser(string userName, string password, UserClaims userClaim)
+        public CreateUser()
+        {
+
+        }
+
+        public CreateUser(string userName, string password, string userClaim)
         {
             UserName = userName;
             Password = password;

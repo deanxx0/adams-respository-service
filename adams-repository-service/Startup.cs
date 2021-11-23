@@ -1,5 +1,5 @@
 using adams_repository_service.Data;
-using adams_repository_service.Policy;
+using adams_repository_service.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

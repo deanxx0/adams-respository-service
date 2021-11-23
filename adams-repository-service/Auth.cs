@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace adams_repository_service.Policy
+namespace adams_repository_service.Auth
 {
     public static class PolicyNames
     {

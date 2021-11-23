@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using adams_repository_service.Auth;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ namespace adams_repository_service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize(Policy = )]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

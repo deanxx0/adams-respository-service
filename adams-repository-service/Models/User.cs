@@ -5,18 +5,12 @@ using System.Threading.Tasks;
 
 namespace adams_repository_service.Models
 {
-    public enum UserClaims
-    {
-        Member,
-        Admin
-    }
-
     public class User
     {
         public string Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public UserClaims UserClaim { get; set; }
+        public string UserClaim { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public User()
@@ -24,22 +18,13 @@ namespace adams_repository_service.Models
 
         }
 
-        public User(string userName, string password, UserClaims userClaim)
+        public User(string userName, string password, string userClaim)
         {
             Id = Guid.NewGuid().ToString();
             UserName = userName;
             Password = password;
             UserClaim = userClaim;
             CreatedAt = DateTime.Now;
-        }
-
-        public User(string id, string userName, string password, UserClaims userClaim, DateTime createdAt)
-        {
-            Id = id;
-            UserName = userName;
-            Password = password;
-            UserClaim = userClaim;
-            CreatedAt = createdAt;
         }
     }
 }
