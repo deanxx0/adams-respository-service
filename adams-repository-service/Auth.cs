@@ -7,14 +7,14 @@ namespace adams_repository_service.Auth
 {
     public static class PolicyNames
     {
-        public static readonly string MemberOrAdmin = "MemberOrAdmin";
-        public static readonly string AdminOnly = "AdminOnly";
+        public const string MemberOrAdmin = "MemberOrAdmin";
+        public const string AdminOnly = "AdminOnly";
     }
 
 
     public static class ClaimNames
     {
-        public static readonly string Member = "Member";
-        public static readonly string Admin = "Admin";
+        public const string Member = "Member";
+        public const string Admin = "Admin";
     }
 }

@@ -11,7 +11,7 @@ namespace adams_repository_service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize(Policy = )]
+    [Authorize(Policy = PolicyNames.AdminOnly)]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
