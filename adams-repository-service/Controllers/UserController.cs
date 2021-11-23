@@ -2,11 +2,13 @@
 using adams_repository_service.Data;
 using adams_repository_service.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace adams_repository_service.Controllers
@@ -26,9 +28,12 @@ namespace adams_repository_service.Controllers
         [HttpPost("user")]
         public ActionResult CreateUser(CreateUser createUser)
         {
+            var hasher = new PasswordHasher<string>();
+            var hashedStr = hasher.HashPassword(createUser.UserName, createUser.Password);
+
             var user = new User(
                 createUser.UserName,
-                createUser.Password,
+                hashedStr,
                 createUser.UserClaim
                 );
             _appDbContext.Users.Add(user);

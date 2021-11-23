@@ -1,4 +1,5 @@
 ﻿using adams_repository_service.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -30,7 +31,10 @@ namespace adams_repository_service.Controllers
         {
             var user = _appDbContext.Users.AsQueryable().Where(x => x.UserName == username).FirstOrDefault();
             if (user == null) return Unauthorized();
-            if (user.Password != password) return Unauthorized();
+
+            var hasher = new PasswordHasher<string>();
+            var verifyResult = hasher.VerifyHashedPassword(user.UserName, user.Password, password);
+            if (verifyResult.Equals(PasswordVerificationResult.Failed)) return Unauthorized();
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSecretKey);
