@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "adams-repository-service", "adams-repository-service\adams-repository-service.csproj", "{FF7163CB-C5C6-4FF6-9757-F412FDF262C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "adams-repository-service", "adams-repository-service\adams-repository-service.csproj", "{FF7163CB-C5C6-4FF6-9757-F412FDF262C9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NAVIAIServices.RepositoryService", "..\naviai-services\NAVIAIServices.RepositoryService\NAVIAIServices.RepositoryService.csproj", "{DD38FD38-7054-4A10-A405-77F18876EFC9}"
 EndProject
