@@ -99,6 +99,8 @@ namespace adams_repository_service
                .WithExposedHeaders("access_token")
                );
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
