@@ -1,4 +1,6 @@
-﻿using adams_repository_service.Data;
+﻿using adams_repository_service.Auth;
+using adams_repository_service.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -6,6 +8,7 @@ namespace adams_repository_service.Controllers
 {
     [Route("projectInfo")]
     [ApiController]
+    [Authorize(Policy = PolicyNames.MemberOrAdmin)]
     public class ProjectInfoController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;

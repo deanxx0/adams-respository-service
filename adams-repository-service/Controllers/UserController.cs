@@ -1,5 +1,7 @@
-﻿using adams_repository_service.Data;
+﻿using adams_repository_service.Auth;
+using adams_repository_service.Data;
 using adams_repository_service.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +13,7 @@ namespace adams_repository_service.Controllers
 {
     [ApiController]
     [Route("")]
+    [Authorize(Policy = PolicyNames.AdminOnly)]
     public class UserController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;

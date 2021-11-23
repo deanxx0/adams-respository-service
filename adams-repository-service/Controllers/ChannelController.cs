@@ -1,5 +1,7 @@
-﻿using adams_repository_service.Data;
+﻿using adams_repository_service.Auth;
+using adams_repository_service.Data;
 using adams_repository_service.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NAVIAIServices.RepositoryService;
@@ -11,6 +13,7 @@ namespace adams_repository_service.Controllers
 {
     [Route("")]
     [ApiController]
+    [Authorize(Policy = PolicyNames.MemberOrAdmin)]
     public class ChannelController : ControllerBase
     {
         IRepositoryService _repositoryService;
