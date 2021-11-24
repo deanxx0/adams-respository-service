@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\naviai-services\NAVIAIServices.RepositoryService\NAVIAIServices.RepositoryService.csproj" />
     <ProjectReference Include="..\..\naviai-services\NAVIAIServices.SDK\NAVIAIServices.SDK.csproj" />
+    <ProjectReference Include="..\adams-repository-service.models\adams-repository-service.models.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

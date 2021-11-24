@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>adams_repository_service.models</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\naviai-services\NAVIAIServices.RepositoryService\NAVIAIServices.RepositoryService.csproj" />
+  </ItemGroup>
+
+</Project>
